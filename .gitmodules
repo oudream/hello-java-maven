@@ -1,0 +1,3 @@
+[submodule "referto/MavenIn28Minutes"]
+	path = referto/MavenIn28Minutes
+	url = https://github.com/in28minutes/MavenIn28Minutes.git
