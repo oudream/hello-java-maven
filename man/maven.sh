@@ -7,10 +7,14 @@
 # https://maven.apache.org/download.cgi
 
 
-mvn clean # 清理所有生成的class和jar；
-mvn clean compile # 先清理，再执行到compile；
-mvn clean test # 先清理，再执行到test，因为执行test前必须执行compile，所以这里不必指定compile；
-mvn clean package # 先清理，再执行到package。
+# 清理所有生成的class和jar；
+mvn clean
+# 先清理，再执行到compile；
+mvn clean compile
+# 先清理，再执行到test，因为执行test前必须执行compile，所以这里不必指定compile；
+mvn clean test
+# 先清理，再执行到package。
+mvn clean package
 
 mvn tomcat:run
 
