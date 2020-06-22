@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 
+# https://maven.apache.org/pom.html
 # https://maven.apache.org/guides/getting-started/index.html
 
 # https://maven.apache.org/
@@ -109,7 +110,7 @@ mvn clean dependency:copy-dependencies package
 mvn site
 
 
-# install on windows
+### install on windows
 # 添 加 MAVEN_HOME 环 境 变 量 ， 值 为 MAVEN 的 解 压 缩 目 录 。 把 MAVEN 的 bin 目 录
 # （%MAVEN_HOME%\bin）加入系统的 Path 环境变量
 MAVEN_HOME=D:\tools\maven-3
@@ -125,5 +126,30 @@ cat >> conf/settings.conf <<EOF
       <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
     </mirror>
   </mirrors>
+EOF
+
+
+
+### jar with test
+# maven-jar-plugin	maven 默认打包插件，用来创建 project jar
+# maven-shade-plugin	用来打可执行包，executable(fat) jar
+# maven-assembly-plugin	支持定制化打包方式，例如 apache 项目的打包方式
+# https://www.jianshu.com/p/14bcb17b99e0
+# https://maven.apache.org/plugins/maven-jar-plugin/index.html
+# https://stackoverflow.com/questions/12828416/generate-test-jar-along-with-jar-file-in-test-package
+java -cp D:\java\lib\junit-4.13.jar;D:\java\lib\hamcrest-core-1.3.jar;D:\tmp\hello11-1.0.1-tests.jar org.junit.runner.JUnitCore hello.maven.hello11.AppTest
+cat >> pom.xml <<EOF
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>2.4</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>test-jar</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 EOF
 
